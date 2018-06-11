@@ -40,6 +40,7 @@ module.exports = {
       "error",
       "always"
     ],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     /* Advanced Rules*/
     "no-unused-expressions": "warn",
