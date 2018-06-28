@@ -1,5 +1,5 @@
 module.exports = {
-  validate(board) {
+  validateBoard(board) {
     let check = []
 
     // Check rows
@@ -40,6 +40,32 @@ module.exports = {
       check = []
     }
 
+    return true
+  },
+
+  validateInsertion(board, row, col, num) {
+    // Check the row
+    for (let i = 0; i < board[row].length; i++) {
+      if (board[row][i] === num) {
+        return false
+      }
+    }
+
+    // Check the column
+    for (let i = 0; i < board.length; i++) {
+      if (board[i][col] === num) {
+        return false
+      }
+    }
+
+    // Check block
+    for (let i = Math.floor(row / 3) * 3; i < (Math.floor(row / 3) * 3) + 3; i++) {
+      for (let j = Math.floor(col / 3) * 3; j < (Math.floor(col / 3) * 3) + 3; j++) {
+        if (board[i][j] === num) {
+          return false
+        }
+      }
+    }
     return true
   }
 }
