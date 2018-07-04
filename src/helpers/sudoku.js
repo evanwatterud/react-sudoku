@@ -1,3 +1,5 @@
+import SudokuGenerator from 'js-sudoku-generator'
+
 module.exports = {
   validateBoard(board) {
     let check = []
@@ -67,5 +69,15 @@ module.exports = {
       }
     }
     return true
+  },
+
+  makeBoard(difficulty) {
+    const generatedBoard = SudokuGenerator.generate(1)[0]
+    if (difficulty === 'EASY') {
+      return generatedBoard.getSheet(0)
+    } else if (difficulty === 'MEDIUM') {
+      return generatedBoard.getSheet(1)
+    }
+    return generatedBoard.getSheet(2)
   }
 }
