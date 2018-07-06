@@ -1,0 +1,47 @@
+.difficulty-modal {
+  background: #B2B2B2;
+  background: rgba(178, 178, 178, .5);
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+.difficulty-modal .difficulty-label {
+  margin: auto;
+  padding-top: 15%;
+}
+
+.difficulty-button {
+  align-items: center;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 5px solid #383838;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  height: 10%;
+  justify-content: center;
+  margin: 10% auto 0 auto;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 40%;
+}
+
+.difficulty-button::after {
+  letter-spacing: 1px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.difficulty-button:hover,
+.difficulty-button:active {
+  background-color: #383838;
+  color: white;
+}
+
+.difficulty-button span {
+  flex: 1;
+}
