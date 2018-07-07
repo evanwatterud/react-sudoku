@@ -1,14 +1,13 @@
 .difficulty-modal {
   background: #B2B2B2;
   background: rgba(178, 178, 178, .5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   text-align: center;
   width: 100%;
-}
-
-.difficulty-modal .difficulty-label {
-  margin: auto;
-  padding-top: 15%;
 }
 
 .difficulty-button {
@@ -22,11 +21,19 @@
   display: flex;
   height: 10%;
   justify-content: center;
-  margin: 10% auto 0 auto;
+  margin: 0 auto 0 auto;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
   width: 40%;
+}
+
+.easy-selection {
+  margin-bottom: 10%;
+}
+
+.hard-selection {
+  margin-top: 10%;
 }
 
 .difficulty-button::after {

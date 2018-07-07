@@ -5,7 +5,6 @@ import '../css/difficultyModal.css'
 const DifficultyModal = (props) => {
   return (
     <div className="difficulty-modal">
-      <h3 className="difficulty-label">Select Difficulty:</h3>
       <div
         className="difficulty-button easy-selection"
         onClick={() => { props.handleClick('EASY') }}
