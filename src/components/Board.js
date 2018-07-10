@@ -20,20 +20,25 @@ class Board extends React.Component {
   }
 
   render() {
-    const spaces = []
+    const rows = []
+    let spaces = []
     if (this.state.isPlaying) {
       // Traverse the board array and create the spaces
       for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
-          spaces.push(<div className={`board-space row-${row}`} >{this.state.board[row][col]}</div>)
+          spaces.push(<div className={`col-${col}`} >{this.state.board[row][col]}</div>)
         }
+        rows.push(<div className="board-row" >{spaces}</div>)
+        spaces = []
       }
     }
     return (
       <div className="sudoku-board" >
         { !this.state.isPlaying &&
           <DifficultyModal handleClick={this.handleDifficultySelection} /> }
-        {spaces}
+        <div className="board-spaces" >
+          {rows}
+        </div>
       </div>
     )
   }

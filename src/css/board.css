@@ -7,3 +7,21 @@
   margin: auto;
   width: 50vw;
 }
+
+.board-spaces {
+  height: 100%;
+  width: 100%;
+}
+
+.board-spaces .board-row {
+  height: calc(100%/9);
+  width: 100%;
+  display: flex;
+}
+
+.board-row div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
