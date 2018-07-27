@@ -1,7 +1,8 @@
 module.exports = {
   "parser": "babel-eslint",
   "rules": {
-    "strict": 0
+    "strict": 0,
+    "jsx-a11y/href-no-hash": "off",
   },
   "env": {
     "browser": true,
@@ -40,6 +41,10 @@ module.exports = {
       "error",
       "always"
     ],
+    "max-len": [
+      "error",
+      { "code": 5000 }
+    ],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     /* Advanced Rules*/
@@ -47,7 +52,5 @@ module.exports = {
     "no-useless-concat": "warn",
     "block-scoped-var": "error",
     "consistent-return": "error",
-    "jsx-a11y/href-no-hash": "off",
-    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
   }
 };

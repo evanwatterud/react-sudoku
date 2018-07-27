@@ -20,7 +20,20 @@ class Board extends React.Component {
   }
 
   handleSpaceInput = (event) => {
-    console.log(event.nativeEvent.srcElement.id)
+    const spaceValue = event.nativeEvent.data ? event.nativeEvent.data : ''
+    // Extract the column and row of the space being changed, and update board state
+    const row = Number(event.nativeEvent.srcElement.id.split('-')[0])
+    const col = Number(event.nativeEvent.srcElement.id.split('-')[1])
+    // eslint-disable-next-line
+    if (spaceValue.length > 1 || isNaN(spaceValue)) {
+      document.getElementById(event.nativeEvent.srcElement.id).innerHTML = ''
+    } else {
+      this.setState((prevState) => {
+        const modifiedState = Object.assign({}, prevState)
+        modifiedState.board[row][col] = spaceValue
+        return modifiedState
+      })
+    }
   }
 
   render() {
@@ -36,7 +49,7 @@ class Board extends React.Component {
       // Traverse the board array and create the spaces
       for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
-          spaces.push(<div key={2000 + col + row} id={`${row}-${col}`} className="board-space" contentEditable={Number(this.state.board[row][col]) === 0 ? 'true' : 'false'} onInput={this.handleSpaceInput} >{this.state.board[row][col]}</div>)
+          spaces.push(<div key={2000 + col + row} id={`${row}-${col}`} className="board-space" contentEditable={Number(this.state.board[row][col]) === 0 ? 'true' : 'false'} ref={`${row}-${col}`} onInput={this.handleSpaceInput} >{this.state.board[row][col]}</div>)
         }
         rows.push(<div key={3000 + row} id={`row-${row}`} className="board-row" >{spaces}</div>)
         spaces = []
