@@ -46,6 +46,9 @@ export default {
   },
 
   validateInsertion(board, row, col, num) {
+    if (num === 0) {
+      return false
+    }
     // Check the row
     for (let i = 0; i < board[row].length; i++) {
       if (board[row][i] === num) {

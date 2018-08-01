@@ -27,6 +27,8 @@ class Board extends React.Component {
     // eslint-disable-next-line
     if (spaceValue.length > 1 || isNaN(spaceValue)) {
       document.getElementById(event.nativeEvent.srcElement.id).innerHTML = ''
+    } else if (!Sudoku.validateInsertion(this.state.board, row, col, Number(spaceValue))) {
+      document.getElementById(event.nativeEvent.srcElement.id).innerHTML = ''
     } else {
       this.setState((prevState) => {
         const modifiedState = Object.assign({}, prevState)
@@ -49,12 +51,21 @@ class Board extends React.Component {
       // Traverse the board array and create the spaces
       for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
-          spaces.push(<div key={2000 + col + row} id={`${row}-${col}`} className="board-space" contentEditable={Number(this.state.board[row][col]) === 0 ? 'true' : 'false'} ref={`${row}-${col}`} onInput={this.handleSpaceInput} >{this.state.board[row][col]}</div>)
+          spaces.push(<div key={2000 + col + row} id={`${row}-${col}`} className="board-space" contentEditable={Number(this.state.board[row][col]) !== 0 && typeof this.state.board[row][col] === 'number' ? 'false' : 'true'} suppressContentEditableWarning ref={`${row}-${col}`} onInput={this.handleSpaceInput} >{this.state.board[row][col]}</div>)
         }
         rows.push(<div key={3000 + row} id={`row-${row}`} className="board-row" >{spaces}</div>)
         spaces = []
       }
     }
+
+    if (this.state.isFirstRender) {
+      this.setState((prevState) => {
+        const modifiedState = Object.assign({}, prevState)
+        modifiedState.isFirstRender = false
+        return modifiedState
+      })
+    }
+
     return (
       <div className="sudoku-board" >
         { !this.state.isPlaying &&
