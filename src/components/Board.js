@@ -8,6 +8,7 @@ class Board extends React.Component {
     super(props)
     this.state = {
       board: [],
+      numericBoard: [],
       isPlaying: false
     }
   }
@@ -15,27 +16,39 @@ class Board extends React.Component {
   handleDifficultySelection = (difficulty) => {
     this.setState({
       board: Sudoku.makeBoard(difficulty),
+      numericBoard: Sudoku.makeBoard(difficulty),
       isPlaying: true
     })
   }
 
   handleSpaceInput = (event) => {
     const spaceValue = event.nativeEvent.data ? event.nativeEvent.data : ''
+    const spaceId = event.nativeEvent.srcElement.id
     // Extract the column and row of the space being changed, and update board state
-    const row = Number(event.nativeEvent.srcElement.id.split('-')[0])
-    const col = Number(event.nativeEvent.srcElement.id.split('-')[1])
+    const row = Number(spaceId.split('-')[0])
+    const col = Number(spaceId.split('-')[1])
     // eslint-disable-next-line
-    if (spaceValue.length > 1 || isNaN(spaceValue)) {
-      document.getElementById(event.nativeEvent.srcElement.id).innerHTML = ''
-    } else if (!Sudoku.validateInsertion(this.state.board, row, col, Number(spaceValue))) {
-      document.getElementById(event.nativeEvent.srcElement.id).innerHTML = ''
+    if (document.getElementById(spaceId).innerHTML.length > 1 || spaceValue.length > 1 || isNaN(spaceValue) || !Sudoku.validateInsertion(this.state.numericBoard, row, col, Number(spaceValue))) {
+      document.getElementById(spaceId).innerHTML = ''
+      this.spaceError(spaceId)
     } else {
       this.setState((prevState) => {
         const modifiedState = Object.assign({}, prevState)
         modifiedState.board[row][col] = spaceValue
+        modifiedState.numericBoard[row][col] = Number(spaceValue)
         return modifiedState
       })
     }
+  }
+
+  // Provides the flashing error effect on board spaces
+  spaceError = (spaceId) => {
+    const space = document.getElementById(spaceId)
+
+    space.classList.add('flash-red')
+    setTimeout(() => {
+      space.classList.remove('flash-red')
+    }, 300)
   }
 
   render() {
@@ -56,14 +69,6 @@ class Board extends React.Component {
         rows.push(<div key={3000 + row} id={`row-${row}`} className="board-row" >{spaces}</div>)
         spaces = []
       }
-    }
-
-    if (this.state.isFirstRender) {
-      this.setState((prevState) => {
-        const modifiedState = Object.assign({}, prevState)
-        modifiedState.isFirstRender = false
-        return modifiedState
-      })
     }
 
     return (
