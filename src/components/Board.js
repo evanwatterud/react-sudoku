@@ -1,6 +1,7 @@
 import React from 'react'
 import '../css/board.css'
 import DifficultyModal from './DifficultyModal'
+import Timer from './Timer'
 import Sudoku from '../helpers/sudoku'
 
 class Board extends React.Component {
@@ -71,24 +72,34 @@ class Board extends React.Component {
       }
     }
 
+    if (this.state.isPlaying) {
+      return (
+        <div>
+          <div className="timer-container">
+            <Timer />
+          </div>
+          <div className="sudoku-board" >
+            <div className="board-blocks">
+              <div className="board-blocks-row">
+                {blocks.slice(0, 3)}
+              </div>
+              <div className="board-blocks-row">
+                {blocks.slice(3, 6)}
+              </div>
+              <div className="board-blocks-row">
+                {blocks.slice(6, 9)}
+              </div>
+            </div>
+            <div className="board-spaces" >
+              {rows}
+            </div>
+          </div>
+        </div>
+      )
+    }
     return (
       <div className="sudoku-board" >
-        { !this.state.isPlaying &&
-          <DifficultyModal handleClick={this.handleDifficultySelection} /> }
-        <div className="board-blocks">
-          <div className="board-blocks-row">
-            {blocks.slice(0, 3)}
-          </div>
-          <div className="board-blocks-row">
-            {blocks.slice(3, 6)}
-          </div>
-          <div className="board-blocks-row">
-            {blocks.slice(6, 9)}
-          </div>
-        </div>
-        <div className="board-spaces" >
-          {rows}
-        </div>
+        <DifficultyModal handleClick={this.handleDifficultySelection} />
       </div>
     )
   }

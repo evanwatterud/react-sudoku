@@ -8,6 +8,10 @@
   width: 50vw;
 }
 
+.timer-container {
+  display: flex;
+}
+
 .board-blocks {
   display: flex;
   height: 50vw;
