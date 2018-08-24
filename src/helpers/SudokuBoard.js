@@ -130,8 +130,6 @@ function _backtrackNumbers(i_oSudokuBoard, i_nRow, i_nFrom, i_nTo) {
             }
             l_aBoard[i_nRow][l_nColumn] = 0;
         } else {
-            // this should never happen...
-            console.error(`ERROR: Backtracking, Couldn't Find pool for row(${i}) col(${l_nColumn}) `);
         }
     }
 

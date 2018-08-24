@@ -1,4 +1,4 @@
-import SudokuGenerator from 'js-sudoku-generator'
+import SudokuGenerator from './SudokuGenerator'
 
 export default {
   validateBoard(board) {
