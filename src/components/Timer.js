@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import '../css/timer.css'
 
 class Timer extends React.Component {
@@ -13,6 +14,17 @@ class Timer extends React.Component {
 
   componentDidMount() {
     this.startTimer()
+  }
+
+  componentDidUpdate() {
+    if (this.props.stop) {
+      this.props.sendTime(this.timeToString())
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
+    this.timer = 0
   }
 
   startTimer = () => {
@@ -34,6 +46,13 @@ class Timer extends React.Component {
     })
   }
 
+  timeToString = () => {
+    const secondsString = this.state.seconds.toString()
+    const seconds = (secondsString.length === 1 ? `0${secondsString}` : secondsString)
+
+    return `${this.state.minutes}:${seconds}`
+  }
+
   render() {
     const seconds = this.state.seconds.toString()
 
@@ -41,6 +60,11 @@ class Timer extends React.Component {
       <span className="time-span" >{this.state.minutes} : {seconds.length === 1 ? `0${seconds}` : seconds }</span>
     )
   }
+}
+
+Timer.propTypes = {
+  sendTime: PropTypes.func.isRequired,
+  stop: PropTypes.bool.isRequired
 }
 
 export default Timer

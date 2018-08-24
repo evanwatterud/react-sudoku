@@ -12,7 +12,8 @@ const DifficultyModal = (props) => {
         role="button"
         tabIndex={0}
       >
-        <span>Easy</span>
+        <span><b>Easy</b></span>
+        <span>Best Time: {localStorage.getItem('easyBestTime') === null ? '0:00' : localStorage.getItem('easyBestTime')}</span>
       </div>
       <div
         className="difficulty-button medium-selection"
@@ -21,7 +22,8 @@ const DifficultyModal = (props) => {
         role="button"
         tabIndex={0}
       >
-        <span>Medium</span>
+        <span><b>Medium</b></span>
+        <span>Best Time: {localStorage.getItem('mediumBestTime') === null ? '0:00' : localStorage.getItem('mediumBestTime')}</span>
       </div>
       <div
         className="difficulty-button hard-selection"
@@ -30,7 +32,8 @@ const DifficultyModal = (props) => {
         role="button"
         tabIndex={0}
       >
-        <span>Hard</span>
+        <span><b>Hard</b></span>
+        <span>Best Time: {localStorage.getItem('hardBestTime') === null ? '0:00' : localStorage.getItem('hardBestTime')}</span>
       </div>
     </div>
   )

@@ -26,11 +26,6 @@
   flex-direction: column;
 }
 
-.board-block {
-  border: 2px solid black;
-  flex: 1;
-}
-
 .board-spaces {
   align-items: center;
   caret-color: transparent;
@@ -53,7 +48,13 @@
   border: 1px solid black;
   display: flex;
   flex: 1;
+  font-weight: bold;
   justify-content: center;
+}
+
+.board-block {
+  border: 2px solid black;
+  flex: 1;
 }
 
 [contenteditable="true"]:active,
