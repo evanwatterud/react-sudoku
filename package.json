@@ -26,5 +26,5 @@
     "eslint-plugin-react": "^7.9.1",
     "gh-pages": "^1.2.0"
   },
-  "homepage": "http://evanwatterud.github.io/react-sudoku"
+  "homepage": "https://evanwatterud.github.io/react-sudoku"
 }
